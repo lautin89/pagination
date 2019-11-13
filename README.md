@@ -20,8 +20,8 @@ lautin-pagination是一款基于bootstrap3样式设计的分页插件，它使�
 
 # 下载
 
-+  `npm install lautin-pagination` 安装新版，兼容环境（推荐）
-+  `npm install lautin-pagination@2.0`  安装2.0版本，以模块方式加载
++  `npm install lautin-pagination` 最新版，兼容环境（推荐）
++  `npm install lautin-pagination@2.0`  安装2.0，以模块方式加载
 +  `npm install lautin-pagination@1.x` 安装1.0，以<script>引入
 
 
