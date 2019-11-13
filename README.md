@@ -21,14 +21,14 @@ lautin-pagination是一款基于bootstrap3样式设计的分页插件，它使�
 # 下载
 
 +  `npm install lautin-pagination` 最新版，兼容环境（推荐）
-+  `npm install lautin-pagination@2.0`  安装2.0，以模块方式加载
-+  `npm install lautin-pagination@1.x` 安装1.0，以<script>引入
++  `npm install lautin-pagination@2.0` 安装2.0，以模块方式加载
++  `npm install lautin-pagination@1.x` 安装1.0，以`<script>`引入
 
 
 
 # 使用
 
-# V2.1
+## V2.1
 
 兼容es6模块与es5 Web两种环境，用户可以自由选择：
 
@@ -101,8 +101,6 @@ v2.0版本经过重构，采用`es6+模块化`，支持以`import`方式导入�
 </script>
 ```
 
-
-
 ## V1.0
 
 V1.0版本主要适配浏览器环境，使用IIFE封装环境，并在全局导出`Pagination`
@@ -112,8 +110,6 @@ V1.0版本主要适配浏览器环境，使用IIFE封装环境，并在全局导
 ```javascript
 <script src="./node_modules/lautin-pagination/libs/Pagination.js"></script>
 ```
-
-
 
 + 加载boostrap3样式文件，注意版本：
 
@@ -134,8 +130,6 @@ V1.0版本主要适配浏览器环境，使用IIFE封装环境，并在全局导
     <!--显示页码栏的位置-->
 </div>
 ```
-
-
 
 + 在业务流中 调用Pagination()方法：
 
@@ -167,7 +161,6 @@ $.ajax({
 });
 ```
 
-
 # 配置
 
 ## 必要参数
@@ -186,7 +179,6 @@ $.ajax({
       }
   })
   ```
-
   
 
 ## 可选参数
