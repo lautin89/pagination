@@ -1,0 +1,27 @@
+{
+    "name": "lautin-pagination",
+    "version": "2.0.1",
+    "description": "Quickly generate paging data and pages",
+    "main": "Pagination.js",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lautin89/pagination.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "page",
+        "pagination",
+        "lautin"
+    ],
+    "author": "lautin",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "jquery": "^2.2.4"
+    }
+}

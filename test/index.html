@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 必须指定下载bootstrap3，在bootstrap4中有改动 -->
+    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../public/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+
+
+    <div id="cont">
+        <!-- 数据显示区域 -->
+    </div>
+
+    <div id="pgbr">
+        <!-- 页码栏位置 -->
+    </div>
+
+    <script type="module">
+        
+        import Pagination from '../Pagination.js';
+
+        $.ajax({
+            type : "get",
+            url : "./data.json",
+            success (result) {
+                show(result);
+            }
+        });
+
+        function show(resource) {
+            //对数据进行分页显示
+            Pagination({
+                total: resource,
+                length : 5,
+                theme : "${header} ${first} ${prev} ${pages} ${next} ${last}",
+                callback: function (data, render) {
+                    var table =
+                        `<table class='table table-striped .table-hover'>   
+                        <thead>
+                            <tr>
+                                <th>#</th><th>name</th><th>description</th>
+                            </tr>
+                        </thead><tbody>`;
+                    //遍历截取出来的数据 然后组装到table的tr中
+                    data.forEach(function (item, index, arr) {
+                        table += `<tr>
+                            <td>${item.gid}</td>
+                            <td>${item.gname.padEnd(20, "...")}</td>
+                            <td>${item.gdesc.padEnd(30, "...")}</td>
+                        </tr>`;
+                    });
+                    table += `</tbody></table>`;
+
+                    //将表格数据放入页面指定区域
+                    cont.innerHTML = table;
+
+                    //页面中渲染页码栏
+                    render("#pgbr");
+                    
+                },
+            });
+        }
+    </script>
+</body>
+
+</html>
