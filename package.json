@@ -1,6 +1,6 @@
 {
     "name": "lautin-pagination",
-    "version": "2.0.1",
+    "version": "2.1.1",
     "description": "Quickly generate paging data and pages",
     "main": "Pagination.js",
     "directories": {

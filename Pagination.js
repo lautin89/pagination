@@ -1,11 +1,11 @@
 
 /** 
- * @description 定义一个分页操作类：Pagination
- *              抽象出功能方法：
+ * @description 定义一个分页操作类：Pagination，抽象出功能方法：
  *              1| 显示数据的方法  data
  *              2| 显示页码栏方法  pager
  * @package 
  */
+
 class Pagination {
 
     /**
@@ -14,17 +14,17 @@ class Pagination {
      */
     constructor(usrConf) {
 
-        //初始化用户参数
+        // 初始化用户参数
         this.init(usrConf);
 
-        //声明的公有属性
+        // 声明的公有属性
         this.callback;
         this.maxpage;
 
     }
 
     init(usrConf) {
-        //初始化默认配置
+        // 初始化默认配置
         const conf = {
             total: [],
             length: 10,
@@ -36,7 +36,7 @@ class Pagination {
     }
 
     data() {
-        //计算当前页的起始偏移位置和结束位置
+        // 计算当前页的起始偏移位置和结束位置
         let start = (this.pageid - 1) * this.length,
             end = start + this.length;
         return this.total.slice(start, end);
@@ -45,10 +45,10 @@ class Pagination {
     pager() {
 
         this.maxpage = Math.ceil(this.total.length / this.length);
-        //设置页码栏各组成部分的值
+
+        // 设置页码栏各组成部分的值
         let settings = {
-            "header": `<li>
-                        <span style="color : #333; border: none">
+            "header": `<li><span style="color : #333; border: none">
                         Total ${this.total.length} records, ${this.maxpage} pages
                     </span><li>`,
             "first": this.linked("first"),
@@ -58,9 +58,9 @@ class Pagination {
             "last": this.linked("last"),
         };
 
-        //替换模板中的占位符 返回组装好的页码列表
+        // 替换模板中的占位符 返回组装好的页码列表
         let result = this.theme.replace(/\$\{(\w+)\}/g, function (match, cite) {
-            //将${first}替换成 <a href='javascript:display(1)'>首页</a>
+            // 将${first}替换成 <a href='javascript:display(1)'>首页</a>
             return settings[cite];
         });
 
@@ -98,19 +98,17 @@ class Pagination {
                 break;
         }
 
-        //将this存入全局
-        window._this = this;
-        return `<li>
-                    <a href='javascript:_this.start(${link});' aria-label="${label}">
+        // 将this存入全局
+        window.me = this;
+        return `<li><a href='javascript:me.start(${link});' aria-label="${label}">
                         <span aria-hidden="true">${outer}</span>
-                    </a>
-                </li>`;
+                    </a></li>`;
     }
 
     plist() {
         let links = "";
         if (this.maxpage > 10) {
-            //通常情况下 显示当前的前4后5 共10页
+            // 通常情况下 显示当前的前4后5 共10页
             var start = this.pageid - 4,
                 end = this.pageid + 5;
             if (start < 1) start = 1;
@@ -120,12 +118,12 @@ class Pagination {
             else if (end - start < 9) start = end - 9;
 
         } else {
-            //10页以内 正常显示
+            // 10页以内 正常显示
             var start = 1,
                 end = this.maxpage;
         }
-        //显示从第一页到最大页的 页号，放入一个span中
-        for (var i = start; i <= end; i++) {
+        // 显示从第一页到最大页的 页号，放入一个span中
+        for (let i = start; i <= end; i++) {
             if (i == this.pageid) {
                 links += `<li class="active">
                                 <span>${this.pageid} <span class="sr-only">${this.pageid}
@@ -139,10 +137,10 @@ class Pagination {
     }
 
     bindEvents() {
-        //给页码栏中页码列表区域绑定点击事件
+        // 给页码栏中页码列表区域绑定点击事件
         let spans = document.querySelectorAll("ul.pagination li.plist a");
         spans.forEach(function (item) {
-            //使用箭头函数获得平行的this值
+            // 使用箭头函数获得平行的this值
             item.onclick = () => {
                 this.start(Number(item.innerHTML));
             };
@@ -156,46 +154,40 @@ class Pagination {
     start(arg) {
         switch (typeof arg) {
             case "function":
-                //初始化执行时 传入的回调函数
+                // 初始化执行时 传入的回调函数
                 this.callback = arg;
                 break;
             case "number":
-                //页码按钮点击时 传入页码值
+                // 页码按钮点击时 传入页码值
                 this.pageid = arg;
                 break;
             default:
-                //没有参数传入时 不执行动作
+                // 没有参数传入时 不执行动作
                 break;
         }
 
         this.callback(this.data(), this.render.bind(this));
     }
 
-    //核心模块帮助渲染
+    // 核心模块帮助渲染
     render (node) {
-        console.log(this)
-        let container;
-        if (!node.nodeType) {
-            container = document.querySelector(node)
-        } else {
-            container = node;
-        }
+        const container = node.nodeType ? node : document.querySelector(node);
         container.innerHTML = this.pager();
-        //给页码栏绑定点击事件，如何确保DOM加载完毕执行？
-        //避免在MVVM结构中，动态渲染时 无法查找DOM
+        // 给页码栏绑定点击事件，如何确保DOM加载完毕执行？
+        // 避免在MVVM结构中，动态渲染时 无法查找DOM
         this.bindEvents();
     }
 
-    //添加静态调用实用程序
-    static start(usrConf) {
+    // 添加静态调用实用程序
+    static work(usrConf) {
         try {
-            const aPager = new Pagination(usrConf);
-            aPager.start(usrConf.callback);
+            const ins = new Pagination(usrConf);
+            ins.start(usrConf.callback);
         } catch (e) {
-            console.log(e.message);
+            console.dir(e);
             alert(e.message);
         }
     }
 }
 
-export default Pagination.start;
+export default Pagination.work;
