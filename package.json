@@ -1,0 +1,31 @@
+{
+  "name": "lautin2-page",
+  "version": "2.2.5",
+  "description": "快速生成数据和页码栏的前端分页器",
+  "main": "page.esm.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lautin89/pagination.git"
+  },
+  "keywords": [
+    "page",
+    "pagination",
+    "lautin2"
+  ],
+  "author": "lautin2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lautin89/pagination/issues"
+  },
+  "homepage": "https://github.com/lautin89/pagination#readme",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "jquery": "^2.2.4"
+  }
+}
